@@ -85,8 +85,11 @@ public class ResourceServlet extends HttpServlet {
         INDEX_WAITING_TIME);
     long indexAgeMillis = nowMillis - indexWrittenMillis;
     if (indexAgeMillis > INDEX_MAX_AGE) {
-      response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-      return;
+      /* Indicate to the client that our data is stale (but continue
+       * producing a response, such that clients can opt to use what we
+       * have should they prefer.) This response can be short-circuited
+       * and overwritten by other failure cases (e.g. bad requests). */
+      response.setStatus(HttpServletResponse.SC_GATEWAY_TIMEOUT);
     }
     long cacheMaxAgeMillis = Math.max(CACHE_MIN_TIME,
         ((CACHE_MAX_TIME - indexAgeMillis)

@@ -24,6 +24,9 @@ public class HttpServletResponseWrapper {
   protected void setCharacterEncoding(String characterEncoding) {
     this.response.setCharacterEncoding(characterEncoding);
   }
+  protected void setStatus(int errorStatusCode) {
+    this.response.setStatus(errorStatusCode);
+  }
   protected PrintWriter getWriter() throws IOException {
     return this.response.getWriter();
   }

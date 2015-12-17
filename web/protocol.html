@@ -118,6 +118,20 @@ Only file a bug report if this problem persists.
 </p>
 </li>
 
+<li>
+<b>504 Gateway Timeout</b>
+<p>
+The server received an outdated response from an auxiliary provider.
+Specifically, the hourly updater is out of operation, and so the data
+provided by the accompanying response is stale. In this situation,
+clients are recommended to use the <b>relays_published</b> and
+<b>bridges_published</b> fields to determine how they prefer to proceed.
+
+Please check if there's already a bug report for this problem, and if
+not, file one.
+</p>
+</li>
+
 </ul>
 
 <h4>Protocol versions</h4>
